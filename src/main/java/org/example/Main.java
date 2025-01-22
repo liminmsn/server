@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException, IOException {
-        int port = 8887; // 843 flash policy port
+        int port = 8088; // 843 flash policy port
 
         SocketServer s = new SocketServer(port);
         s.start();
