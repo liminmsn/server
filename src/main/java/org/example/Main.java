@@ -1,0 +1,11 @@
+package org.example;
+
+import org.module.Socket;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Server启动");
+        Socket socket = new Socket();
+        socket.start();
+    }
+}
