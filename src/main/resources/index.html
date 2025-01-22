@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
+
 <body>
-  <button onclick="">发起ws</button>
+  <button onclick="openWs()">发起ws</button>
   <script>
-    
+    let ws;
+    function openWs() {
+      ws = new WebSocket('ws://127.0.0.1:8081');
+
+      ws.onopen = function () {
+        console.log('WebSocket 连接已建立');
+        // 在连接建立后，可以执行其他操作
+      };
+
+      ws.onmessage = function (event) {
+        console.log('收到消息: ' + event.data);
+        // 处理从服务器接收到的消息
+      };
+
+      ws.onclose = function () {
+        console.log('WebSocket 连接已关闭');
+        // 在连接关闭后，可以进行清理操作
+      };
+
+      ws.onerror = function (error) {
+        console.error('WebSocket 连接发生错误:', error);
+        // 处理连接错误
+      };
+    }
   </script>
 </body>
+
 </html>
