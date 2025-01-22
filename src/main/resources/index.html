@@ -1,27 +1,101 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>WebSocket Example</title>
-    <script>
-        var webSocket = new WebSocket("ws://localhost:8887");
-
-        webSocket.onopen = function(event) {
-            console.log("WebSocket opened");
-        };
-
-        webSocket.onmessage = function(event) {
-            console.log("Message from server: " + event.data);
-        };
-
-        function sendMessage() {
-            var message = document.getElementById("messageInput").value;
-            webSocket.send(message);
+    <title></title>
+    <script src="/scripts/main.js" defer></script>
+    <style type="text/css">
+        ::-webkit-scrollbar {
+            display: none;
         }
-    </script>
+
+        .chat {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info_usr {
+            padding-block: 5px;
+            background-color: rgb(126, 127, 128);
+            overflow-x: auto;
+            text-align: center;
+            color: greenyellow;
+        }
+
+
+
+        .ipt {
+            flex: 0.1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ipt input {
+            height: 100%;
+            border: none;
+            padding: 0;
+
+            &:nth-child(1) {
+                flex: 1;
+                text-indent: 5px;
+
+                &:focus {
+                    outline: none;
+                    background-color: #eee;
+                }
+            }
+
+            &:nth-child(2) {
+                flex: 0.2;
+                padding-inline: 10px;
+                color: white;
+                background-color: black;
+
+                &:active {
+                    background-color: rgb(126, 127, 128);
+                }
+            }
+        }
+
+        #msg_list {
+            flex: 1;
+            width: 100%;
+            max-width: 100%;
+            background-color: green;
+            overflow-y: scroll;
+        }
+
+        #msg_list p span {
+            display: inline-block;
+            max-width: 100%;
+            margin-right: 4%;
+            margin-left: 1%;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: white;
+            word-wrap: break-word; /* 超出容器宽度时自动换行 */
+        }
+    </style>
 </head>
+
 <body>
-    <h1>WebSocket Example</h1>
-    <input type="text" id="messageInput" placeholder="Enter message">
-    <button onclick="sendMessage()">Send</button>
+    <div class="chat">
+        <div class="info_usr">
+            <span>聊天室</span>
+        </div>
+        <div id="msg_list"></div>
+        <div class="ipt">
+            <input type="text" id="name" placeholder="YourName..." />
+        </div>
+        <div class="ipt">
+            <input type="text" id="msg" placeholder="Message.." />
+            <input type="button" value="发送消息" onclick="obj.sendMessage()" />
+        </div>
+    </div>
 </body>
+
 </html>
